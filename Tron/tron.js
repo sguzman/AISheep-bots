@@ -59,7 +59,7 @@ var util = {
 
   area: {
     raw: {
-      arL: function() {
+      aRawL: function() {
         var p;
         if (arguments.length === 0) {
           p = util.p;
@@ -70,7 +70,7 @@ var util = {
         return [p[0], p[1] - 1];
       },
 
-      arT: function() {
+      aRawT: function() {
         var p;
         if (arguments.length === 0) {
           p = util.p;
@@ -81,7 +81,7 @@ var util = {
         return [p[0] - 1, p[1]];
       },
 
-      arR: function() {
+      aRawR: function() {
         var p;
         if (arguments.length === 0) {
           p = util.p;
@@ -92,7 +92,7 @@ var util = {
         return [p[0], p[1] + 1];
       },
 
-      arB: function() {
+      aRawB: function() {
         var p;
         if (arguments.length === 0) {
           p = util.p;
@@ -106,7 +106,7 @@ var util = {
 
     refined: {
       arL: function() {
-        var rawCoord = util.area.raw.arL();
+        var rawCoord = util.area.raw.aRawL();
         if (rawCoord[1] < 0) {
           rawCoord = null;
         }
@@ -115,7 +115,7 @@ var util = {
       },
 
       arT: function() {
-        var rawCoord = util.area.raw.arT();
+        var rawCoord = util.area.raw.aRawT();
         if (rawCoord[0] < 0) {
           rawCoord = null;
         }
@@ -124,7 +124,7 @@ var util = {
       },
 
       arR: function() {
-        var rawCoord = util.area.raw.arR();
+        var rawCoord = util.area.raw.aRawR();
         if (rawCoord[1] < 0) {
           rawCoord = null;
         }
@@ -133,7 +133,7 @@ var util = {
       },
 
       arB: function() {
-        var rawCoord = util.area.raw.arB();
+        var rawCoord = util.area.raw.aRawB();
         if (rawCoord[0] < 0) {
           rawCoord = null;
         }
