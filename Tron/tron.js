@@ -241,14 +241,6 @@ var util = {
   util.b = board;
   util.p = bot_loc;
 
-  if (util.hazard.canTop()) {
-    return "N";
-  } else if (util.hazard.canLeft()) {
-    return "W";
-  } else if (util.hazard.canBot()) {
-    return "S";
-  } else {
-    return "E";
-  }
+  return util.edge.minimalEdge();
 
 })(readline());
