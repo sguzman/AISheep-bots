@@ -166,7 +166,12 @@ var util = {
       },
 
       all: function() {
-        return [util.area.refined.arL(), util.area.refined.arT(), util.area.refined.arR(), util.area.refined.arB()];
+        if (arguments.length === 0) {
+          return [util.area.refined.arL(), util.area.refined.arT(), util.area.refined.arR(), util.area.refined.arB()];
+        } else {
+          var arg = arguments[0];
+          return [util.area.refined.arL(arg), util.area.refined.arT(arg), util.area.refined.arR(arg), util.area.refined.arB(arg)];
+        }
       }
     },
 
