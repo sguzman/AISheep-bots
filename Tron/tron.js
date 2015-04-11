@@ -1,24 +1,14 @@
 /**
  * Created by Salvador on 4/9/2015.
  */
-var util = {
-  b: null,
-  p: null,
+var Util = (function() {
+  var proto = {
+    b: null,
+    p: null,
 
-  status: function() {
-    if (arguments.length === 0) {
-      return util.b[util.p[0]][util.p[1]];
-    } else {
-      var arg = arguments[0];
-      return util.b[arg[0]][arg[1]];
-    }
-
-  },
-
-  argue: {
-    defArgP: function(args) {
-      if (args.length === 0) {
-        return util.p;
+    status: function() {
+      if (arguments.length === 0) {
+        return this.b[this.p[0]][this.p[1]];
       } else {
         return args[0];
       }
