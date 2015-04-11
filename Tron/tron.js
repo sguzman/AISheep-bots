@@ -16,14 +16,6 @@ var util = {
   },
 
   argue: {
-    defArg: function(args, defVal) {
-      if (args.length === 0) {
-        return defVal;
-      } else {
-        return args[0];
-      }
-    },
-
     defArgP: function(args) {
       if (args.length === 0) {
         return util.p;
