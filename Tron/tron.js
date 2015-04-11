@@ -106,7 +106,13 @@ var util = {
 
     refined: {
       arL: function() {
-        var rawCoord = util.area.raw.aRawL();
+        var rawCoord;
+        if (arguments.length === 0) {
+          rawCoord = util.area.raw.aRawL();
+        } else {
+          rawCoord = util.area.raw.aRawL(arguments[0]);
+        }
+
         if (rawCoord[1] < 0) {
           rawCoord = null;
         }
@@ -115,7 +121,13 @@ var util = {
       },
 
       arT: function() {
-        var rawCoord = util.area.raw.aRawT();
+        var rawCoord;
+        if (arguments.length === 0) {
+          rawCoord = util.area.raw.aRawT();
+        } else {
+          rawCoord = util.area.raw.aRawT(arguments[0]);
+        }
+
         if (rawCoord[0] < 0) {
           rawCoord = null;
         }
@@ -124,7 +136,13 @@ var util = {
       },
 
       arR: function() {
-        var rawCoord = util.area.raw.aRawR();
+        var rawCoord;
+        if (arguments.length === 0) {
+          rawCoord = util.area.raw.aRawR();
+        } else {
+          rawCoord = util.area.raw.aRawR(arguments[0]);
+        }
+
         if (rawCoord[1] < 0) {
           rawCoord = null;
         }
@@ -133,7 +151,13 @@ var util = {
       },
 
       arB: function() {
-        var rawCoord = util.area.raw.aRawB();
+        var rawCoord;
+        if (arguments.length === 0) {
+          rawCoord = util.area.raw.aRawB();
+        } else {
+          rawCoord = util.area.raw.aRawB(arguments[0]);
+        }
+
         if (rawCoord[0] < 0) {
           rawCoord = null;
         }
