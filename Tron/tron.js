@@ -195,22 +195,46 @@ var util = {
 
   dir: {
     canLeft: function() {
-      var left = util.area.raw.arL();
+      var left;
+      if (arguments.length === 0) {
+        left = util.area.raw.aRawL();
+      } else {
+        left = util.area.raw.aRawL(arguments[0]);
+      }
+
       return left[1] !== -1 && util.is.Free(left);
     },
 
     canTop: function() {
-      var top = util.area.raw.arT();
+      var top;
+      if (arguments.length === 0) {
+        top = util.area.raw.aRawT();
+      } else {
+        top = util.area.raw.aRawT(arguments[0]);
+      }
+
       return top[0] !== -1 && util.is.Free(top);
     },
 
     canBot: function() {
-      var bot = util.area.raw.arB();
+      var bot;
+      if (arguments.length === 0) {
+        bot = util.area.raw.aRawT();
+      } else {
+        bot = util.area.raw.aRawT(arguments[0]);
+      }
+
       return bot[0] !== 16 && util.is.Free(bot);
     },
 
     canRight: function() {
-      var right = util.area.raw.arR();
+      var right;
+      if (arguments.length === 0) {
+        right = util.area.raw.aRawT();
+      } else {
+        right = util.area.raw.aRawT(arguments[0]);
+      }
+
       return right[1] !== 16 && util.is.Free(right);
     }
   }
