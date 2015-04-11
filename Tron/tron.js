@@ -15,6 +15,32 @@ var util = {
 
   },
 
+  argue: {
+    defArg: function(args, defVal) {
+      if (args.length === 0) {
+        return defVal;
+      } else {
+        return args[0];
+      }
+    },
+
+    defArgP: function(args) {
+      if (args.length === 0) {
+        return util.p;
+      } else {
+        return args[0];
+      }
+    },
+
+    retVal: function(func, args) {
+      if (args.length === 0) {
+        return func();
+      } else {
+        return func(args[0]);
+      }
+    }
+  },
+
   is: {
     Free: function() {
       if (arguments.length === 0) {
