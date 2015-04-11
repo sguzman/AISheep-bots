@@ -66,45 +66,25 @@ var util = {
   area: {
     raw: {
       aRawL: function() {
-        var p;
-        if (arguments.length === 0) {
-          p = util.p;
-        } else {
-          p = arguments[0];
-        }
+        var p = util.argue.defArgP(arguments);
 
         return [p[0], p[1] - 1];
       },
 
       aRawT: function() {
-        var p;
-        if (arguments.length === 0) {
-          p = util.p;
-        } else {
-          p = arguments[0];
-        }
+        var p = util.argue.defArgP(arguments);
 
         return [p[0] - 1, p[1]];
       },
 
       aRawR: function() {
-        var p;
-        if (arguments.length === 0) {
-          p = util.p;
-        } else {
-          p = arguments[0];
-        }
+        var p = util.argue.defArgP(arguments);
 
         return [p[0], p[1] + 1];
       },
 
       aRawB: function() {
-        var p;
-        if (arguments.length === 0) {
-          p = util.p;
-        } else {
-          p = arguments[0];
-        }
+        var p = util.argue.defArgP(arguments);
 
         return [p[0] + 1, p[1]];
       }
