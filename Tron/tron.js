@@ -6,6 +6,11 @@ var Util = (function(board_, point_) {
     this.b = board;
     this.p = point;
 
+    var getThisContext = function () {
+      return this;
+    };
+    getThisContext.bind(this);
+
     this.status = function() {
       if (arguments.length === 0) {
         return this.b[this.p[0]][this.p[1]];
