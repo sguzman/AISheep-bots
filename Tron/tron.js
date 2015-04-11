@@ -23,7 +23,7 @@ var Util = (function(board_, point_) {
     this.argue = {
       defArgP: function(args) {
         if (args.length === 0) {
-          return this.p;
+          return getThisContext().p;
         } else {
           return args[0];
         }
@@ -59,31 +59,31 @@ var Util = (function(board_, point_) {
        * @return {boolean}
        */
       Free: function() {
-        return this.argue.retVal(this.status, arguments) === "null";
+        return getThisContext().argue.retVal(getThisContext().status, arguments) === "null";
       }
     };
     this.area = {
       raw: {
         aRawL: function() {
-          var p = this.argue.defArgP(arguments);
+          var p = getThisContext().argue.defArgP(arguments);
 
           return [p[0], p[1] - 1];
         },
 
         aRawT: function() {
-          var p = this.argue.defArgP(arguments);
+          var p = getThisContext().argue.defArgP(arguments);
 
           return [p[0] - 1, p[1]];
         },
 
         aRawR: function() {
-          var p = this.argue.defArgP(arguments);
+          var p = getThisContext().argue.defArgP(arguments);
 
           return [p[0], p[1] + 1];
         },
 
         aRawB: function() {
-          var p = this.argue.defArgP(arguments);
+          var p = getThisContext().argue.defArgP(arguments);
 
           return [p[0] + 1, p[1]];
         }
@@ -91,7 +91,7 @@ var Util = (function(board_, point_) {
 
       refined: {
         arL: function() {
-          var rawIndices = this.argue.retVal(this.area.raw.aRawL, arguments);
+          var rawIndices = getThisContext().argue.retVal(getThisContext().area.raw.aRawL, arguments);
 
           if (rawIndices[1] < 0) {
             rawIndices = null;
@@ -101,7 +101,7 @@ var Util = (function(board_, point_) {
         },
 
         arT: function() {
-          var indices = this.argue.retVal(this.area.raw.aRawT, arguments);
+          var indices = getThisContext().argue.retVal(getThisContext().area.raw.aRawT, arguments);
 
           if (indices[0] < 0) {
             indices = null;
@@ -111,7 +111,7 @@ var Util = (function(board_, point_) {
         },
 
         arR: function() {
-          var rawIndices = this.argue.retVal(this.area.raw.aRawR, arguments);
+          var rawIndices = getThisContext().argue.retVal(getThisContext().area.raw.aRawR, arguments);
 
           if (rawIndices[1] > 15) {
             rawIndices = null;
@@ -121,7 +121,7 @@ var Util = (function(board_, point_) {
         },
 
         arB: function() {
-          var rawIndices = this.argue.retVal(this.area.raw.aRawB, arguments);
+          var rawIndices = getThisContext().argue.retVal(getThisContext().area.raw.aRawB, arguments);
 
           if (rawIndices[0] > 15) {
             rawIndices = null;
@@ -131,47 +131,47 @@ var Util = (function(board_, point_) {
         },
 
         all: function() {
-          return this.argue.returnValues(this.area.refined.refiners, arguments);
+          return getThisContext().argue.returnValues(getThisContext().area.refined.refiners, arguments);
         }
       }
     };
 
     this.hazard = {
       canLeft: function() {
-        var left = this.argue.retVal(this.area.raw.aRawL, arguments);
+        var left = getThisContext().argue.retVal(getThisContext().area.raw.aRawL, arguments);
 
-        return left[1] !== -1 && this.is.Free(left);
+        return left[1] !== -1 && getThisContext().is.Free(left);
       },
 
       canTop: function() {
-        var top = this.argue.retVal(this.area.raw.aRawT, arguments);
+        var top = getThisContext().argue.retVal(getThisContext().area.raw.aRawT, arguments);
 
-        return top[0] !== -1 && this.is.Free(top);
+        return top[0] !== -1 && getThisContext().is.Free(top);
       },
 
       canRight: function() {
-        var right = this.argue.retVal(this.area.raw.aRawR, arguments);
+        var right = getThisContext().argue.retVal(getThisContext().area.raw.aRawR, arguments);
 
-        return right[0] !== 16 && this.is.Free(right);
+        return right[0] !== 16 && getThisContext().is.Free(right);
       },
 
       canBot: function() {
-        var bot = this.argue.retVal(this.area.raw.aRawB, arguments);
+        var bot = getThisContext().argue.retVal(getThisContext().area.raw.aRawB, arguments);
 
-        return bot[1] !== 16 && this.is.Free(bot);
+        return bot[1] !== 16 && getThisContext().is.Free(bot);
       }
     };
     this.edge = {
       directions: ["W", "N", "E", "S"],
 
       count: function() {
-        var edgy = this.argue.returnValues(this.hazard.validateHazard, arguments);
+        var edgy = getThisContext().argue.returnValues(getThisContext().hazard.validateHazard, arguments);
 
         return edgy[0] + edgy[1] + edgy[2] + edgy[3];
       },
 
       countEdges: function() {
-        var indices = this.argue.retVal(this.area.refined.all, arguments);
+        var indices = getThisContext().argue.retVal(getThisContext().area.refined.all, arguments);
 
         var edges = [], minimal = 0;
         for (var idx = 0; idx < indices.length; ++idx) {
@@ -180,7 +180,7 @@ var Util = (function(board_, point_) {
           if (point === null) {
             edges.push(Infinity);
           } else {
-            var count = this.edge.count(point);
+            var count = getThisContext().edge.count(point);
             edges.push(count);
 
             if (minimal > count) {
@@ -193,9 +193,9 @@ var Util = (function(board_, point_) {
       },
 
       minimalEdge: function () {
-        var idx = this.argue.retVal(this.edge.countEdges, arguments);
+        var idx = getThisContext().argue.retVal(getThisContext().edge.countEdges, arguments);
 
-        return this.edge.directions[idx];
+        return getThisContext().edge.directions[idx];
       }
     };
 
