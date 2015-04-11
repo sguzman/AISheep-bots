@@ -34,22 +34,37 @@ var util = {
   },
 
   is: {
+    /**
+     * @return {boolean}
+     */
     Free: function() {
       return util.argue.retVal(util.status, arguments) === "null";
     },
 
+    /**
+     * @return {boolean}
+     */
     Bot: function() {
       return util.argue.retVal(util.status, arguments) === "P";
     },
 
+    /**
+     * @return {boolean}
+     */
     Other: function() {
       return util.argue.retVal(util.status, arguments) === "C";
     },
 
+    /**
+     * @return {boolean}
+     */
     Visited: function() {
       return util.argue.retVal(util.status, arguments) === "XP";
     },
 
+    /**
+     * @return {boolean}
+     */
     oVisited: function() {
       return util.argue.retVal(util.status, arguments) === "XC";
     }
