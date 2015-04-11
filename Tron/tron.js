@@ -114,6 +114,8 @@ var util = {
     },
 
     refined: {
+      refiners: [util.area.refined.arL, util.area.refined.arT, util.area.refined.arR, util.area.refined.arB],
+
       arL: function() {
         var rawCoord = util.argue.retVal(util.area.raw.aRawL, arguments);
 
