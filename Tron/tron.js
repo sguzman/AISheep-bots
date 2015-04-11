@@ -43,43 +43,23 @@ var util = {
 
   is: {
     Free: function() {
-      if (arguments.length === 0) {
-        return util.status() === "null";
-      } else {
-        return util.status(arguments[0]) === "null";
-      }
+      return util.argue.retVal(util.status, arguments) === "null";
     },
 
     Bot: function() {
-      if (arguments.length === 0) {
-        return util.status() === "P";
-      } else {
-        return util.status(arguments[0]) === "P";
-      }
+      return util.argue.retVal(util.status, arguments) === "P";
     },
 
     Other: function() {
-      if (arguments.length === 0) {
-        return util.status() === "C";
-      } else {
-        return util.status(arguments[0]) === "C";
-      }
+      return util.argue.retVal(util.status, arguments) === "C";
     },
 
     Visited: function() {
-      if (arguments.length === 0) {
-        return util.status() === "XP";
-      } else {
-        return util.status(arguments[0]) === "XP";
-      }
+      return util.argue.retVal(util.status, arguments) === "XP";
     },
 
     oVisited: function() {
-      if (arguments.length === 0) {
-        return util.status() === "XC";
-      } else {
-        return util.status(arguments[0]) === "XC";
-      }
+      return util.argue.retVal(util.status, arguments) === "XC";
     }
   },
 
