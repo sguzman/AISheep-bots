@@ -56,34 +56,6 @@ var Util = (function() {
        */
       Free: function() {
         return this.argue.retVal(this.status, arguments) === "null";
-      },
-
-      /**
-       * @return {boolean}
-       */
-      Bot: function() {
-        return this.argue.retVal(this.status, arguments) === "P";
-      },
-
-      /**
-       * @return {boolean}
-       */
-      Other: function() {
-        return this.argue.retVal(this.status, arguments) === "C";
-      },
-
-      /**
-       * @return {boolean}
-       */
-      Visited: function() {
-        return this.argue.retVal(this.status, arguments) === "XP";
-      },
-
-      /**
-       * @return {boolean}
-       */
-      oVisited: function() {
-        return this.argue.retVal(this.status, arguments) === "XC";
       }
     },
 
