@@ -221,6 +221,11 @@ var util = {
 
       return mininal;
     },
+
+    minimalEdge: function () {
+      var idx = util.argue.retVal(util.edge.countEdges, arguments);
+
+      return util.edge.directions[idx];
     }
   }
 };
