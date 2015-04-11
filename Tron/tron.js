@@ -162,7 +162,8 @@ var util = {
           return [util.area.refined.arL(arg), util.area.refined.arT(arg), util.area.refined.arR(arg), util.area.refined.arB(arg)];
         }
       }
-    },
+    }
+  },
 
   hazard: {
     canners: [util.hazard.canLeft, util.hazard.canTop, util.hazard.canRight, util.hazard.canBot],
