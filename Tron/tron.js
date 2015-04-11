@@ -193,9 +193,6 @@ var util = {
 // OUTPUT: N, E, S, W which signifies which direction to move
 
 (function bot(board, bot_loc, opp_loc) {
-  console.log(board);
-  console.log(bot_loc);
-
   util.b = board;
   util.p = bot_loc;
 
