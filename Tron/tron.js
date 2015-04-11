@@ -201,13 +201,26 @@ var util = {
 
       return edgy[0] + edgy[1] + edgy[2] + edgy[3];
     },
-      if (arguments.length === 0) {
-        right = util.area.raw.aRawT();
-      } else {
-        right = util.area.raw.aRawT(arguments[0]);
+
+    countEdges: function() {
+      var coords = util.argue.retVal(util.area.refined.all, arguments);
+
+      var edges = [], mininal = 0;
+      for (var point in coords) {
+        if (point === null) {
+          edges.push(Infinity);
+        } else {
+          var count = util.edge.count(point);
+          edges.push(count);
+
+          if (mininal > count) {
+            mininal = edges.length - 1;
+          }
+        }
       }
 
-      return right[1] !== 16 && util.is.Free(right);
+      return mininal;
+    },
     }
   }
 };
