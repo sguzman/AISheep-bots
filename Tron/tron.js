@@ -2,11 +2,11 @@
  * Created by Salvador on 4/9/2015.
  */
 var Util = (function(board_, point_) {
-  var proto = {
-    b: null,
-    p: null,
+  var f_ = function(board, point) {
+    this.b = board;
+    this.p = point;
 
-    status: function() {
+    this.status = function() {
       if (arguments.length === 0) {
         return this.b[this.p[0]][this.p[1]];
       } else {
@@ -14,9 +14,8 @@ var Util = (function(board_, point_) {
         return this.b[arg[0]][arg[1]];
       }
 
-    },
-
-    argue: {
+    };
+    this.argue = {
       defArgP: function(args) {
         if (args.length === 0) {
           return this.p;
@@ -48,18 +47,17 @@ var Util = (function(board_, point_) {
 
         return results;
       }
-    },
+    };
 
-    is: {
+    this.is = {
       /**
        * @return {boolean}
        */
       Free: function() {
         return this.argue.retVal(this.status, arguments) === "null";
       }
-    },
-
-    area: {
+    };
+    this.area = {
       raw: {
         aRawL: function() {
           var p = this.argue.defArgP(arguments);
@@ -87,8 +85,6 @@ var Util = (function(board_, point_) {
       },
 
       refined: {
-        refiners: null,
-
         arL: function() {
           var rawIndices = this.argue.retVal(this.area.raw.aRawL, arguments);
 
@@ -133,11 +129,9 @@ var Util = (function(board_, point_) {
           return this.argue.returnValues(this.area.refined.refiners, arguments);
         }
       }
-    },
+    };
 
-    hazard: {
-      validateHazard: null,
-
+    this.hazard = {
       canLeft: function() {
         var left = this.argue.retVal(this.area.raw.aRawL, arguments);
 
@@ -161,9 +155,8 @@ var Util = (function(board_, point_) {
 
         return bot[1] !== 16 && this.is.Free(bot);
       }
-    },
-
-    edge: {
+    };
+    this.edge = {
       directions: ["W", "N", "E", "S"],
 
       count: function() {
@@ -199,19 +192,15 @@ var Util = (function(board_, point_) {
 
         return this.edge.directions[idx];
       }
-    }
-  };
-  proto.area.refined.refiners = [proto.area.refined.arL, proto.area.refined.arT, proto.area.refined.arR, proto.area.refined.arB];
-  proto.hazard.validateHazard = [proto.hazard.canLeft, proto.hazard.canTop, proto.hazard.canRight, proto.hazard.canBot];
+    };
 
-  var f_ = function(board, point) {
-    this.b = board;
-    this.p = point;
+    this.area.refined.refiners = [this.area.refined.arL, this.area.refined.arT, this.area.refined.arR, this.area.refined.arB];
+    this.hazard.validateHazard = [this.hazard.canLeft, this.hazard.canTop, this.hazard.canRight, this.hazard.canBot];
   };
 
-  f_.prototype = proto;
+  f_.prototype = Object.prototype;
 
-  return new f_();
+  return new f_(board_, point_);
 });
 
 // INPUT:  board   -> [RxC] multidimensional array with each element being either
