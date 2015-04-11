@@ -193,6 +193,14 @@ var util = {
     }
   },
 
+  edge: {
+    directions: ["W", "N", "E", "S"],
+
+    count: function() {
+      var edgy = util.argue.retVals(util.hazard.canners, arguments);
+
+      return edgy[0] + edgy[1] + edgy[2] + edgy[3];
+    },
       if (arguments.length === 0) {
         right = util.area.raw.aRawT();
       } else {
