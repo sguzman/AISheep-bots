@@ -141,7 +141,7 @@ var util = {
       }
     },
 
-  dir: {
+  hazard: {
     canLeft: function() {
       var left = util.argue.retVal(util.area.raw.aRawL, arguments);
 
@@ -192,11 +192,11 @@ var util = {
   util.b = board;
   util.p = bot_loc;
 
-  if (util.dir.canTop()) {
+  if (util.hazard.canTop()) {
     return "N";
-  } else if (util.dir.canLeft()) {
+  } else if (util.hazard.canLeft()) {
     return "W";
-  } else if (util.dir.canBot()) {
+  } else if (util.hazard.canBot()) {
     return "S";
   } else {
     return "E";
