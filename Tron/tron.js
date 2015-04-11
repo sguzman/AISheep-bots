@@ -30,6 +30,22 @@ var util = {
       } else {
         return func(args[0]);
       }
+    },
+
+    retVals: function(funcs, args) {
+      var results = [];
+
+      if (args.length === 0) {
+        for (var i in funcs) {
+          results.push(i());
+        }
+      } else {
+        for (var i in funcs) {
+          results.push(i(args[0]));
+        }
+      }
+
+      return results;
     }
   },
 
@@ -149,6 +165,8 @@ var util = {
     },
 
   hazard: {
+    canners: [util.hazard.canLeft, util.hazard.canTop, util.hazard.canRight, util.hazard.canBot],
+
     canLeft: function() {
       var left = util.argue.retVal(util.area.raw.aRawL, arguments);
 
