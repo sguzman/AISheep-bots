@@ -60,20 +60,45 @@ var util = {
   area: {
     raw: {
       arL: function() {
-        return [util.p[0], util.p[1] - 1];
+        var p;
+        if (arguments.length === 0) {
+          p = util.p;
+        } else {
+          p = arguments[0];
+        }
+
+        return [p[0], p[1] - 1];
       },
 
       arT: function() {
-        return [util.p[0] - 1, util.p[1]];
+        var p;
+        if (arguments.length === 0) {
+          p = util.p;
+        } else {
+          p = arguments[0];
+        }
+
+        return [p[0] - 1, p[1]];
       },
 
       arR: function() {
-        return [util.p[0], util.p[1] + 1];
+        var p;
+        if (arguments.length === 0) {
+          p = util.p;
+        } else {
+          p = arguments[0];
+        }
+
+        return [p[0], p[1] + 1];
       },
 
       arB: function() {
-        return [util.p[0] + 1, util.p[1]];
-      },
+        var p;
+        if (arguments.length === 0) {
+          p = util.p;
+        } else {
+          p = arguments[0];
+        }
 
       all: function() {
         return [util.area.raw.arL(), util.area.raw.arT(), util.area.raw.arR(), util.area.raw.arB()];
