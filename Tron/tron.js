@@ -141,24 +141,6 @@ var util = {
       }
     },
 
-    bleed: function() {
-      var around = [];
-      var refinedAreas;
-      if (arguments.length === 0) {
-        refinedAreas = util.area.refined.all();
-      } else {
-        refinedAreas = util.area.refined.all(arguments[0]);
-      }
-
-      for (var dir in refinedAreas) {
-        if (dir !== null) {
-          around.push(dir);
-        }
-      }
-      return around;
-    }
-  },
-
   dir: {
     canLeft: function() {
       var left;
