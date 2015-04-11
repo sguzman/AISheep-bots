@@ -33,16 +33,16 @@ var Util = (function() {
         }
       },
 
-      retVals: function(funcs, args) {
+      returnValues: function(functions, args) {
         var results = [];
 
         if (args.length === 0) {
-          for (var i = 0; i < funcs.length; ++i) {
-            results.push(funcs[i]());
+          for (var i = 0; i < functions.length; ++i) {
+            results.push(functions[i]());
           }
         } else {
-          for (var k = 0; k < funcs.length; ++k) {
-            results.push(funcs[k](args[0]));
+          for (var k = 0; k < functions.length; ++k) {
+            results.push(functions[k](args[0]));
           }
         }
 
@@ -118,53 +118,53 @@ var Util = (function() {
         refiners: null,
 
         arL: function() {
-          var rawCoord = this.argue.retVal(this.area.raw.aRawL, arguments);
+          var rawIndices = this.argue.retVal(this.area.raw.aRawL, arguments);
 
-          if (rawCoord[1] < 0) {
-            rawCoord = null;
+          if (rawIndices[1] < 0) {
+            rawIndices = null;
           }
 
-          return rawCoord;
+          return rawIndices;
         },
 
         arT: function() {
-          var rawCoord = this.argue.retVal(this.area.raw.aRawT, arguments);
+          var indices = this.argue.retVal(this.area.raw.aRawT, arguments);
 
-          if (rawCoord[0] < 0) {
-            rawCoord = null;
+          if (indices[0] < 0) {
+            indices = null;
           }
 
-          return rawCoord;
+          return indices;
         },
 
         arR: function() {
-          var rawCoord = this.argue.retVal(this.area.raw.aRawR, arguments);
+          var rawIndices = this.argue.retVal(this.area.raw.aRawR, arguments);
 
-          if (rawCoord[1] > 15) {
-            rawCoord = null;
+          if (rawIndices[1] > 15) {
+            rawIndices = null;
           }
 
-          return rawCoord;
+          return rawIndices;
         },
 
         arB: function() {
-          var rawCoord = this.argue.retVal(this.area.raw.aRawB, arguments);
+          var rawIndices = this.argue.retVal(this.area.raw.aRawB, arguments);
 
-          if (rawCoord[0] > 15) {
-            rawCoord = null;
+          if (rawIndices[0] > 15) {
+            rawIndices = null;
           }
 
-          return rawCoord;
+          return rawIndices;
         },
 
         all: function() {
-          return this.argue.retVals(this.area.refined.refiners, arguments);
+          return this.argue.returnValues(this.area.refined.refiners, arguments);
         }
       }
     },
 
     hazard: {
-      canners: null,
+      validateHazard: null,
 
       canLeft: function() {
         var left = this.argue.retVal(this.area.raw.aRawL, arguments);
@@ -195,29 +195,31 @@ var Util = (function() {
       directions: ["W", "N", "E", "S"],
 
       count: function() {
-        var edgy = this.argue.retVals(this.hazard.canners, arguments);
+        var edgy = this.argue.returnValues(this.hazard.validateHazard, arguments);
 
         return edgy[0] + edgy[1] + edgy[2] + edgy[3];
       },
 
       countEdges: function() {
-        var coords = this.argue.retVal(this.area.refined.all, arguments);
+        var indices = this.argue.retVal(this.area.refined.all, arguments);
 
-        var edges = [], mininal = 0;
-        for (var point in coords) {
+        var edges = [], minimal = 0;
+        for (var idx = 0; idx < indices.length; ++idx) {
+          var point = idx;
+
           if (point === null) {
             edges.push(Infinity);
           } else {
             var count = this.edge.count(point);
             edges.push(count);
 
-            if (mininal > count) {
-              mininal = edges.length - 1;
+            if (minimal > count) {
+              minimal = edges.length - 1;
             }
           }
         }
 
-        return mininal;
+        return minimal;
       },
 
       minimalEdge: function () {
@@ -228,7 +230,7 @@ var Util = (function() {
     }
   };
   proto.area.refined.refiners = [proto.area.refined.arL, proto.area.refined.arT, proto.area.refined.arR, proto.area.refined.arB];
-  proto.hazard.canners = [proto.hazard.canLeft, proto.hazard.canTop, proto.hazard.canRight, proto.hazard.canBot];
+  proto.hazard.validateHazard = [proto.hazard.canLeft, proto.hazard.canTop, proto.hazard.canRight, proto.hazard.canBot];
 
   var f_ = function(board, point) {
     this.b = board;
