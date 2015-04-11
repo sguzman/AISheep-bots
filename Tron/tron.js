@@ -100,8 +100,7 @@ var util = {
           p = arguments[0];
         }
 
-      all: function() {
-        return [util.area.raw.arL(), util.area.raw.arT(), util.area.raw.arR(), util.area.raw.arB()];
+        return [p[0] + 1, p[1]];
       }
     },
 
