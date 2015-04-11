@@ -143,40 +143,30 @@ var util = {
 
   dir: {
     canLeft: function() {
-      var left;
-      if (arguments.length === 0) {
-        left = util.area.raw.aRawL();
-      } else {
-        left = util.area.raw.aRawL(arguments[0]);
-      }
+      var left = util.argue.retVal(util.area.raw.aRawL, arguments);
 
       return left[1] !== -1 && util.is.Free(left);
     },
 
     canTop: function() {
-      var top;
-      if (arguments.length === 0) {
-        top = util.area.raw.aRawT();
-      } else {
-        top = util.area.raw.aRawT(arguments[0]);
-      }
+      var top = util.argue.retVal(util.area.raw.aRawT, arguments);
 
       return top[0] !== -1 && util.is.Free(top);
     },
 
-    canBot: function() {
-      var bot;
-      if (arguments.length === 0) {
-        bot = util.area.raw.aRawT();
-      } else {
-        bot = util.area.raw.aRawT(arguments[0]);
-      }
+    canRight: function() {
+      var right = util.argue.retVal(util.area.raw.aRawR, arguments);
 
-      return bot[0] !== 16 && util.is.Free(bot);
+      return right[0] !== 16 && util.is.Free(right);
     },
 
-    canRight: function() {
-      var right;
+    canBot: function() {
+      var bot = util.argue.retVal(util.area.raw.aRawB, arguments);
+
+      return bot[1] !== 16 && util.is.Free(bot);
+    }
+  },
+
       if (arguments.length === 0) {
         right = util.area.raw.aRawT();
       } else {
