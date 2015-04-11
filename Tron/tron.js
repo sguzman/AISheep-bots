@@ -1,7 +1,7 @@
 /**
  * Created by Salvador on 4/9/2015.
  */
-var Util = (function() {
+var Util = (function(board_, point_) {
   var proto = {
     b: null,
     p: null,
@@ -211,7 +211,7 @@ var Util = (function() {
 
   f_.prototype = proto;
 
-  return f_;
+  return new f_();
 });
 
 // INPUT:  board   -> [RxC] multidimensional array with each element being either
