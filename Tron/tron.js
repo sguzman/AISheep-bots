@@ -114,7 +114,7 @@ var util = {
       arR: function() {
         var rawCoord = util.argue.retVal(util.area.raw.aRawR, arguments);
 
-        if (rawCoord[1] < 0) {
+        if (rawCoord[1] > 15) {
           rawCoord = null;
         }
 
@@ -124,7 +124,7 @@ var util = {
       arB: function() {
         var rawCoord = util.argue.retVal(util.area.raw.aRawB, arguments);
 
-        if (rawCoord[0] < 0) {
+        if (rawCoord[0] > 15) {
           rawCoord = null;
         }
 
