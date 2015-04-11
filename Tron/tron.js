@@ -146,7 +146,7 @@ var util = {
       }
     },
 
-    cover: function() {
+    bleed: function() {
       var around = [];
       var refinedAreas = util.area.refined.all();
 
