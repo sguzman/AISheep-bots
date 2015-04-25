@@ -20,38 +20,36 @@ var Util = (function(board_, point_) {
       }
 
     };
-    this.argue = {
-      defArgP: function(args) {
-        if (args.length === 0) {
-          return getThisContext().p;
-        } else {
-          return args[0];
-        }
-      },
 
-      retVal: function(func, args) {
-        if (args.length === 0) {
-          return func();
-        } else {
-          return func(args[0]);
-        }
-      },
-
-      returnValues: function(functions, args) {
-        var results = [];
-
-        if (args.length === 0) {
-          for (var i = 0; i < functions.length; ++i) {
-            results.push(functions[i]());
-          }
-        } else {
-          for (var k = 0; k < functions.length; ++k) {
-            results.push(functions[k](args[0]));
-          }
-        }
-
-        return results;
+    this.argue = {};
+    this.argue.defArgP = function(args) {
+      if (args.length === 0) {
+        return getThisContext().p;
+      } else {
+        return args[0];
       }
+    };
+    this.argue.retVal = function(func, args) {
+      if (args.length === 0) {
+        return func();
+      } else {
+        return func(args[0]);
+      }
+    };
+    this.argue.returnValues = function(functions, args) {
+      var results = [];
+
+      if (args.length === 0) {
+        for (var i = 0; i < functions.length; ++i) {
+          results.push(functions[i]());
+        }
+      } else {
+        for (var k = 0; k < functions.length; ++k) {
+          results.push(functions[k](args[0]));
+        }
+      }
+
+      return results;
     };
 
     this.is = {
@@ -208,6 +206,8 @@ var Util = (function(board_, point_) {
   return new f_(board_, point_);
 });
 
+var starterKit = require('../Tron/starting');
+
 // INPUT:  board   -> [RxC] multidimensional array with each element being either
 //                    "null" (empty space),
 //                    "P"    (your bot)
@@ -217,10 +217,9 @@ var Util = (function(board_, point_) {
 //         bot_loc -> [r,c] where r=row and c=col of your bot on board
 //         opp_loc -> [r,c] where r=row and c=col of opponent on board
 // OUTPUT: N, E, S, W which signifies which direction to move
-
 (function bot(board, bot_loc, opp_loc) {
   var util = new Util(board, bot_loc);
 
   return util.edge.minimalEdge();
 
-})(readline());
+})(starterKit.board, starterKit.bot, starterKit.other);
